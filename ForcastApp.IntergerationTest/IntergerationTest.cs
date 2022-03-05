@@ -19,7 +19,7 @@ namespace ForcastApp.IntergerationTest
         [InlineData("/")]
         [InlineData("/Home")]
         [InlineData("/Home/Index")]
-        [InlineData("/ForecastApp/SearchCity")]
+        [InlineData("/ForecastApp/SearchCity")]        
         public async Task Validate_MiddlewareFlow(string url)
         {
 

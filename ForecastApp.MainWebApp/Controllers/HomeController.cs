@@ -43,35 +43,58 @@ namespace ForecastApp.MainWebApp.Controllers
 
         public async Task Login()
         {
-
-            await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties()
+            try
             {
-                RedirectUri = Url.Action("GoogleResponse")
-            }); ;
+
+                await HttpContext.ChallengeAsync(GoogleDefaults.AuthenticationScheme, new AuthenticationProperties()
+                {
+                    RedirectUri = Url.Action("GoogleResponse")
+                }); ;
+            }
+            catch(Exception ex)
+            {
+
+                throw ex;
+            }
 
         }
 
         public async Task<ActionResult> GoogleResponse()
         {
-            var result =  await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var cliams = result.Principal.Identities.FirstOrDefault().Claims.Select(cliam => new
+            try
             {
-                cliam.Issuer,               
-                cliam.OriginalIssuer,                
-                cliam.Type,
-                cliam.Value
-            });
+                var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToAction("Index", "Home");
+                var cliams = result.Principal.Identities.FirstOrDefault().Claims.Select(cliam => new
+                {
+                    cliam.Issuer,
+                    cliam.OriginalIssuer,
+                    cliam.Type,
+                    cliam.Value
+                });
 
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public async Task<ActionResult> Logout()
         {
-            await HttpContext.SignOutAsync();
+            try
+            {
+                await HttpContext.SignOutAsync();
 
-           return  RedirectToAction("Index","Home");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 

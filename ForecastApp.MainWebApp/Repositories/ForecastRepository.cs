@@ -26,25 +26,30 @@ namespace ForecastApp.Repositories
 
         public async Task<WeatherResponse> GetForecastASync(string city)
         {
-            
-            string IDOWeather = Constants.OPEN_WEATHER_APPID;
+            try
+            {
+                string IDOWeather = Constants.OPEN_WEATHER_APPID;
 
-            string url = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0}&units=metric&cnt=1&APPID={1}", city, IDOWeather);
+                string url = string.Format("http://api.openweathermap.org/data/2.5/weather?q={0}&units=metric&cnt=1&APPID={1}", city, IDOWeather);
 
-           // var client  = new HttpClient();
+                var request = new HttpRequestMessage(HttpMethod.Get, url);
 
-            var request = new HttpRequestMessage(HttpMethod.Get,url);
+                var response = await _httpClient.SendAsync(request);
 
-            var response = await _httpClient.SendAsync(request);
-           
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     var resultcontent = await response.Content.ReadAsStringAsync();
                     dynamic WeatherResponse = JsonConvert.DeserializeObject<WeatherResponse>(resultcontent);
                     return WeatherResponse;
-                }            
+                }
 
-            return null;
+                return null;
+            }
+            catch(Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
        
