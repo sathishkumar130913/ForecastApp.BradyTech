@@ -73,7 +73,7 @@ namespace ForecastApp.MainWebApp.Controllers
                     cliam.Value
                 });
 
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("SearchCity", "ForecastApp");
             }
             catch (Exception ex)
             {

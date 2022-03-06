@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WeatherMap</title>
+    <title>@ViewData["Title"] - WeatherApp</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -19,7 +19,7 @@
 </head>
 <body>
     <header>
-        <partial name="_CookieConsentPartial" />
+        <partial name="_Partial" />
     </header>
 
         @*<partial name="_Nav" />*@
@@ -28,7 +28,7 @@
             @RenderBody()
             <hr>
             <footer>
-                <p>&copy; Powered by WeatherMap</p>
+                <p>&copy; Powered by WeatherApp</p>
             </footer>
         </div>
 
