@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ForecastApp-deployment
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: ForecastApp
+  template:
+    metadata:
+      labels:
+        app: ForecastApp
+    spec:
+      containers:
+      - name: ForecastApp-container
+        image: gcr.io/dps-parent-project/ForecastApp:tagversion
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
