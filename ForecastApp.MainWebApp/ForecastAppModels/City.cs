@@ -8,13 +8,13 @@ namespace ForecastApp.ForecastAppModels
 {
     public class City
     {
-        [Display(Name = "City:")]
+        [Display(Name = "City/Area:")]
         public string Name { get; set; }
 
         [Display(Name = "Temperature:")]
         public float Temp { get; set; }
 
-        [Display(Name = "Humidity")]
+        [Display(Name = "Humidity:")]
         public int Humidity { get; set; }
 
         [Display(Name = "Pressure:")]
